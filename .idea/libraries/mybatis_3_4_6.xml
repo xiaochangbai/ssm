@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="mybatis-3.4.6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/spring-mybatis/lib/mybatis-3.4.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring-mybatis/lib/mysql-connector-java-5.1.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring-mybatis/lib/spring-aop-5.1.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring-mybatis/lib/spring-aspects-5.1.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring-mybatis/lib/spring-beans-5.1.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring-mybatis/lib/spring-context-5.1.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring-mybatis/lib/spring-core-5.1.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring-mybatis/lib/spring-expression-5.1.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/spring-mybatis/lib/spring-jdbc-5.1.5.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

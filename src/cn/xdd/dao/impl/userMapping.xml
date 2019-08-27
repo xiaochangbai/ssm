@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xdd.dao.impl.UserDaoImpl">
+    <!--查询所有用户-->
+    <select id="findAll" resultType="cn.xdd.po.User">
+        select * from user
+    </select>
+
+    <!--插入单个用户-->
+    <insert id="insert" parameterType="cn.xdd.po.User">
+        insert into user set name=#{name},pwd=#{pwd}
+    </insert>
+
+    <!--根据id删除多个用户-->
+    <delete id="deleteByIds" parameterType="List">
+        delete from user where id in
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+</mapper>
