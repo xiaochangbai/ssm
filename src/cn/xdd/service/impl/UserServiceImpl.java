@@ -1,7 +1,9 @@
 package cn.xdd.service.impl;
 
-import cn.xdd.dao.impl.UserDaoImpl;
+import cn.xdd.dao.UserDao;
+import cn.xdd.dao.UserDao;
 import cn.xdd.po.User;
+import cn.xdd.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,16 +19,17 @@ import java.util.UUID;
  * @createTime 2019年08月26日 22:01
  */
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDaoImpl userDaoImpl;
+    private UserDao userDao;
 
     /**
      * 查询所有用户
      * @return
      */
+    @Override
     public List<User> findAll(){
-        return userDaoImpl.findAll();
+        return userDao.findAll();
     }
 
     /**
@@ -34,8 +37,9 @@ public class UserService {
      * @param user
      * @return
      */
+    @Override
     public int insert(User user){
-        return userDaoImpl.insert(user);
+        return userDao.insert(user);
     }
 
     /**
@@ -43,17 +47,18 @@ public class UserService {
      * @param list
      * @return
      */
+    @Override
     public int deleteByIds(List<Integer> list){
-        return userDaoImpl.deleteByIds(list);
+        return userDao.deleteByIds(list);
     }
 
     /**
      * spring transaction manage
      */
     public void test(){
-        userDaoImpl.insert(new User(UUID.randomUUID().toString().substring(1,5),"1234124"));
+        userDao.insert(new User(UUID.randomUUID().toString().substring(1,5),"1234124"));
         List<Integer> list=new ArrayList<>();
         list.add(143);
-        userDaoImpl.deleteByIds(list);
+        userDao.deleteByIds(list);
     }
 }
