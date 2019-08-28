@@ -17,9 +17,10 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--开启包扫描-->
-    <context:component-scan base-package="cn.xdd.dao;cn.xdd.service;cn.xdd.aop"/>
-    <!--开启aop代理-->
-    <aop:aspectj-autoproxy/>
+    <context:component-scan base-package="cn.xdd.*"/>
+    <!--开启mvc注解驱动-->
+    <mvc:annotation-driven/>
+
 
     <!--使用spring数据源-->
    <!-- <bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -30,12 +31,11 @@
     </bean>-->
 
     <!--使用c3p0数据源-->
-    <context:property-placeholder location="classpath:*.properties"/>
     <bean id="dataSource2" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/xdd"/>
         <property name="user" value="root"/>
-        <property name="password" value="root"/>
+        <property name="password" value="xxxxxxxxx"/>
         <property name="maxPoolSize" value="15"/>
         <property name="initialPoolSize" value="5"/>
     </bean>
@@ -43,17 +43,11 @@
     <!--配置sqlSessionFactory，相当于配置mybatis核心配置文件-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
         <property name="dataSource" ref="dataSource2"/>
-        <property name="mapperLocations" value="classpath:cn/xdd/dao/*.xml"/>
+        <property name="mapperLocations" value="classpath:cn/xdd/dao/impl/*.xml"/>
     </bean>
-
-    <!--扫描dao层并为生成相应的实现类-->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="cn.xdd.dao"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-   <!-- <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactory"/>
-    </bean>-->
+    </bean>
 
 
     <!--配置spring事务-->
@@ -73,9 +67,11 @@
             <tx:method name="*" propagation="REQUIRED"/>
         </tx:attributes>
     </tx:advice>
-    <!--3.aop配置-->
+    <!--3.配置切面-->
     <aop:config>
         <aop:pointcut id="serviceTransaction" expression="execution(* cn.xdd.service.impl.*.*(..))"/>
         <aop:advisor advice-ref="serviceInterceptor" pointcut-ref="serviceTransaction"/>
     </aop:config>
+    <!--开启aop代理-->
+    <aop:aspectj-autoproxy/>
 </beans>
