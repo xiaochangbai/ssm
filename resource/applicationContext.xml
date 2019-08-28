@@ -27,9 +27,9 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/xdd"/>
         <property name="username" value="root"/>
-        <property name="password" value="0320520liuxiao"/>
+        <property name="password" value="root"/>
     </bean>-->
-
+    <context:property-placeholder location="classpath:db.properties"/>
     <!--使用c3p0数据源-->
     <bean id="dataSource2" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
@@ -39,6 +39,7 @@
         <property name="maxPoolSize" value="15"/>
         <property name="initialPoolSize" value="5"/>
     </bean>
+
 
     <!--配置sqlSessionFactory，相当于配置mybatis核心配置文件-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >

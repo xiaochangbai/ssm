@@ -1,6 +1,6 @@
 <h1>SSM框架整合(SpringMVC+Spring+Mybatis)</h1>
 <hr/>
-<img src="img/supertart.jpg"/>
+<img src="img/superStar.jpg"/>
 
 <h3>整合流程：</h3>
 <ul>
